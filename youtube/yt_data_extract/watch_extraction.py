@@ -172,7 +172,7 @@ def _extract_watch_info_mobile(top_level):
         else:
             info['playlist'] = {}
             info['playlist']['title'] = playlist.get('title')
-            info['playlist']['author'] = extract_str(multi_get(playlist, 
+            info['playlist']['author'] = extract_str(multi_get(playlist,
                 'ownerName', 'longBylineText', 'shortBylineText', 'ownerText'))
             author_id = deep_get(playlist, 'longBylineText', 'runs', 0,
                 'navigationEndpoint', 'browseEndpoint', 'browseId')
@@ -585,6 +585,7 @@ def update_with_age_restricted_info(info, video_info_page):
     video_info = urllib.parse.parse_qs(video_info_page)
     player_response = deep_get(video_info, 'player_response', 0)
     if player_response is None:
+        print("WARNING 2: player_response is None")
         info['playability_error'] = ERROR_PREFIX + 'Could not find player_response in video_info_page'
         return
     try:

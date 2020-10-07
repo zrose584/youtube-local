@@ -182,6 +182,7 @@ def decrypt_signatures(info):
     if not yt_data_extract.requires_decryption(info):
         return False
     if not info['player_name']:
+        print("WARNING 1:", info)
         return 'Could not find player name'
     if not info['base_js']:
         return 'Failed to find base.js'
